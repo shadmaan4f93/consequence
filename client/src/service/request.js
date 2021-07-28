@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { getUserToken, clearUser } from '../helpers/utils';
 const axiosInstance = axios.create({
   baseURL: "http://127.0.0.1:8000",
   headers: {
@@ -7,5 +7,18 @@ const axiosInstance = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = getUserToken();
+    if (token) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
 
 export default axiosInstance

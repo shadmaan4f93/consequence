@@ -42,7 +42,7 @@ export default function Register() {
     dispatch(postRegister(state));
 	}
   return (
-    <>
+		<div className="auth-inner">
 			<form>
 				<h3>Register</h3>
 				<div className="form-group">
@@ -67,6 +67,6 @@ export default function Register() {
 						Already registered <a href="/login">Login?</a>
 				</p>
 			</form>
-    </>
+    </div>
   );
 }

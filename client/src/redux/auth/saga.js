@@ -9,7 +9,11 @@ import {
   postLoginSuccess,
   postLoginError,
   postRegisterSuccess,
-  postRegisterError
+  postRegisterError,
+  getUserSuccess,
+  getUserError,
+  updateUserSuccess,
+  updateUserError
 } from './actions';
 
 const postLoginAsync = (payload) => axiosInstance.post('api/accounts/login/', payload);
@@ -44,9 +48,44 @@ export function* watchPostRegister() {
   yield takeEvery(ActionTypes.POST_REGISTER, postRegister);
 }
 
+
+const getUserAsync = () => axiosInstance.get('api/accounts/user/');
+
+function* getUser() {
+  try {
+    const { data } = yield call(getUserAsync);
+    yield put(getUserSuccess(data));
+  } catch (error) {
+    yield put(getUserError(error));
+  }
+}
+
+export function* watchGetUser() {
+  yield takeEvery(ActionTypes.GET_USER, getUser);
+}
+
+
+const updateUserAsync = (payload) => axiosInstance.put(`api/accounts/user/${payload.id}/`, payload);
+
+function* updateUser({payload}) {
+  try {
+    const { data } = yield call(updateUserAsync, payload);
+    yield put(updateUserSuccess(data));
+  } catch (error) {
+    yield put(updateUserError(error));
+  }
+}
+
+export function* watchUpdateUser() {
+  yield takeEvery(ActionTypes.UPDATE_USER, updateUser);
+}
+
+
 export default function* rootSaga() {
   yield all([
     fork(watchPostLogin),
-    fork(watchPostRegister)
+    fork(watchPostRegister),
+    fork(watchGetUser),
+    fork(watchUpdateUser)
   ]);
 }

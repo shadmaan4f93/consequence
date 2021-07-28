@@ -22,7 +22,7 @@ export default function Login(props) {
 	
 	useEffect(() => {
 		if(response.auth.postLoginSuccess) {
-			window.location.href = '/'
+			window.location.href = '/profile'
 		}
 			
 	}, [response.auth.postLoginSuccess]);
@@ -42,7 +42,7 @@ export default function Login(props) {
     dispatch(postLogin(state));
 	}
   return (
-    <>
+		<div className="auth-inner">
       <form>
 				<h3>Log In</h3>
 				<div className="form-group">
@@ -56,6 +56,6 @@ export default function Login(props) {
 				<div><label>{message.error ? (message.error): ''}</label></div>
 				<button type="button" onClick={handleOnSubmit}  className="btn btn-primary btn-block">Login</button>
 			</form>
-    </>
+    </div>
   );
 }

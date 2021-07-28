@@ -37,4 +37,8 @@ class AccountSerializer(serializers.ModelSerializer):
             password = make_password(validated_data['password'])
         )
         return account
-       
+
+class AccountListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = '__all__'

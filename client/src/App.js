@@ -9,6 +9,7 @@ import './App.css';
 import Home from './components/Home'
 import Login from './components/Login';
 import Register from './components/Register';
+import Profile from './components/Profile';
 
 function App() {
   const userToken = getUserToken()
@@ -33,10 +34,17 @@ function App() {
                 <li className="nav-item">
                   <Link className="nav-link" to={"/login"}>Login</Link>
                 </li>
+                
               )}
               
               <li className="nav-item">
                 <Link className="nav-link" to={"/register"}>Register</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/profile"}>Profile</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/"}>Home</Link>
               </li>
             </ul>
           </div>
@@ -44,13 +52,14 @@ function App() {
       </nav>
 
       <div className="auth-wrapper">
-        <div className="auth-inner">
+       
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route path="/profile" component={Profile} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
           </Switch>
-        </div>
+   
       </div>
   </div>
   </Router>

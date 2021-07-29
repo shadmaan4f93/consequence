@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getUserToken, clearUser } from '../helpers/utils';
 const axiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "http://54.179.121.183:8000",
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',

@@ -1,0 +1,15 @@
+version: '3'
+services:
+  webi:
+    restart: unless-stopped
+    container_name: webappc
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 80:3000
+
+    
